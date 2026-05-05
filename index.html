@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suthsayer | Fortune Favors the Bold</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-red: #580000;
+            --blood-red: #8b0000;
+            --dark-gray: #0d0d0d;
+            --deep-blue: #001a33;
+            --gold: #c5a059;
+            --stone: #2c2c2c;
+            --ssyr-cyan: #00f2ff;
+        }
+
+        body {
+            background-color: var(--dark-gray);
+            color: #d1d1d1;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+        }
+
+        h1, h2, h3, .nav-link {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Gothic Overlay Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 20%, black 90%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(0,0,0,0.95);
+            border-bottom: 2px solid var(--dark-red);
+            z-index: 1000;
+        }
+
+        .navbar-brand { color: var(--gold) !important; font-weight: bold; text-shadow: 2px 2px black; }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 140px 0 100px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1519074063912-ad2fe3f51908?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 5px double var(--dark-red);
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            color: var(--blood-red);
+            text-shadow: 0 0 20px black, 0 0 10px var(--deep-blue);
+            margin-bottom: 20px;
+        }
+
+        /* Unified Prophecy Card (The Feed) */
+        .prophecy-box {
+            background: #151515;
+            border: 1px solid var(--stone);
+            border-left: 4px solid var(--blood-red);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 10;
+            transition: 0.3s;
+        }
+
+        .prophecy-box:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 25px rgba(139, 0, 0, 0.2);
+        }
+
+        .bsky-header {
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid #222;
+        }
+
+        .bsky-handle { font-family: 'MedievalSharp'; color: var(--gold); text-decoration: none; }
+        .bsky-text { font-size: 1.1rem; color: #eee; font-style: italic; margin-top: 10px; }
+
+        /* Polymarket Fields */
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 15px 20px;
+            background: #0a0a0a;
+            border-bottom: 1px solid var(--stone);
+            text-align: center;
+        }
+
+        .stat-label { font-size: 0.65rem; color: #666; text-transform: uppercase; display: block; }
+        .stat-value { font-family: 'MedievalSharp'; font-size: 1.2rem; color: #fff; }
+
+        /* Action Buttons */
+        .trade-buttons { display: flex; }
+        .btn-market {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            font-family: 'Cinzel';
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-yes { background: #1a3a1a; color: #44ff44; }
+        .btn-no { background: #3a1a1a; color: #ff4444; }
+        .btn-stake { background: var(--deep-blue); color: var(--ssyr-cyan); border-left: 1px solid var(--stone); }
+        .btn-market:hover { filter: brightness(1.3); }
+
+        /* Global UI Elements */
+        .btn-suthsayer {
+            background: var(--dark-red);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            font-family: 'MedievalSharp', cursive;
+            padding: 12px 30px;
+            transition: 0.3s;
+        }
+
+        .btn-suthsayer:hover { background: var(--deep-blue); color: white; transform: scale(1.05); }
+
+        footer {
+            border-top: 1px solid var(--stone);
+            padding: 60px 0;
+            background: #050505;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SUTH$AYER</a>
+            <div class="ms-auto d-flex align-items-center">
+                <div class="me-3 d-none d-md-block">
+                    <span class="small text-muted">Balance: </span>
+                    <span style="color:var(--ssyr-cyan); font-family: 'MedievalSharp';">2,450 $SSYR</span>
+                </div>
+                <button class="btn btn-outline-danger btn-sm">Connect Pouch</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section container-fluid">
+        <div class="container">
+            <h1 class="hero-title">Behold the Future</h1>
+            <p class="lead mb-5 text-light">The first prediction market forged on the Bluesky AT Protocol.<br>Scribe your prophecy. Stake your claim. Rule the market.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#feed" class="btn btn-suthsayer">VIEW ACTIVE PROPHECIES</a>
+                <button class="btn btn-outline-secondary">HOW IT WORKS</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="feed" class="container my-5 py-5">
+        <h2 class="text-center mb-5" style="color: var(--gold)">The Scroll of Whispers</h2>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <div class="prophecy-box">
+                    <div class="bsky-header">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="bsky-handle">@DeckardCain.bsky.social</a>
+                            <span class="text-muted small">8m ago</span>
+                        </div>
+                        <p class="bsky-text">"The ancient scrolls suggest a 75% chance that Ethereum will flip the Bitcoin market cap by the next Blood Moon."</p>
+                    </div>
+                    <div class="market-stats">
+                        <div><span class="stat-label">Odds</span><span class="stat-value">¢24</span></div>
+                        <div><span class="stat-label">Volume</span><span class="stat-value">14.2k $SSYR</span></div>
+                        <div><span class="stat-label">Liquidity</span><span class="stat-value">$8,400</span></div>
+                        <div><span class="stat-label">Ends In</span><span class="stat-value text-danger">2D : 14H</span></div>
+                    </div>
+                    <div class="trade-buttons">
+                        <button class="btn-market btn-yes">YES</button>
+                        <button class="btn-market btn-no">NO</button>
+                        <button class="btn-market btn-stake">STAKE $SSYR</button>
+                    </div>
+                </div>
+
+                <div class="prophecy-box">
+                    <div class="bsky-header">
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="bsky-handle">@Zelda_Sage.bsky.social</a>
+                            <span class="text-muted small">1h ago</span>
+                        </div>
+                        <p class="bsky-text">"Will the Kingdom of Bluesky reach 20 million active souls before the year's end? The signs point to Yes."</p>
+                    </div>
+                    <div class="market-stats">
+                        <div><span class="stat-label">Odds</span><span class="stat-value">¢88</span></div>
+                        <div><span class="stat-label">Volume</span><span class="stat-value">52k $SSYR</span></div>
+                        <div><span class="stat-label">Liquidity</span><span class="stat-value">$25,000</span></div>
+                        <div><span class="stat-label">Ends In</span><span class="stat-value">12D : 04H</span></div>
+                    </div>
+                    <div class="trade-buttons">
+                        <button class="btn-market btn-yes">YES</button>
+                        <button class="btn-market btn-no">NO</button>
+                        <button class="btn-market btn-stake">STAKE $SSYR</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid py-5" style="background: var(--stone); position: relative; z-index: 10;">
+        <div class="container text-center py-4">
+            <h3 style="color: var(--blood-red)">Do you have the Sight?</h3>
+            <p class="mb-4">Connect your Bluesky account to turn your posts into profitable prophecies.</p>
+            <button class="btn btn-suthsayer">MINT YOUR FIRST PREDICTION</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <p class="text-secondary small mb-4">FORGED IN THE DEPTHS OF THE AT PROTOCOL • POWERED BY $SSYR</p>
+            <div class="d-flex justify-content-center gap-4 small">
+                <a href="#" class="text-muted text-decoration-none">Whitepaper</a>
+                <a href="#" class="text-muted text-decoration-none">The Council</a>
+                <a href="#" class="text-muted text-decoration-none">Governance</a>
+            </div>
+            <p class="mt-4 x-small text-muted">© 2026 Suthsayer Market. All scrolls reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
