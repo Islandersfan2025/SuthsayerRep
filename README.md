@@ -54,337 +54,43 @@ Automated Settlement + Dispute Resolution
 
 ---
 
-# Technologies Used
-
-## Chainlink CRE
-
-Chainlink CRE powers:
-
-* market creation workflows,
-* market resolution workflows,
-* dispute workflows,
-* and future AI verification pipelines.
-
-CRE acts as the trusted automation and settlement layer for Suthsayer prediction markets.
+The tech stack of **Suthsayer** is built as a three-pillar architecture designed to bridge decentralized social data with high-speed financial execution. By removing legacy cloud dependencies and focusing on native Web3 automation, Suthsayer creates a seamless pipeline from a social media post to an on-chain settled market.
 
 ---
 
-## Bluesky / AT Protocol
+## 1. The Execution Layer: Sonic Network
+Suthsayer is deployed on the **Sonic Network** (formerly Fantom) to provide the "DeFi" part of Social DeFi. Since social media moves in real-time, the underlying blockchain must match that speed.
 
-Bluesky integration is used as the:
-
-* social discovery layer,
-* prediction feed source,
-* and future social identity layer.
-
-The current MVP watches for posts containing:
-
-```text
-#Suthsayer
-```
+* **Sub-Second Finality:** Sonic’s L1 technology allows for near-instant transaction confirmations. This is critical for Suthsayer because market odds shift the moment a high-profile user posts on Bluesky. 
+* **Cost Efficiency:** To encourage "micro-prophecies" (small bets on niche social topics), gas fees must be negligible. Sonic provides the low-fee environment necessary for high-frequency social trading.
+* **EVM Compatibility:** By utilizing the Sonic EVM, Suthsayer deploys complex smart contracts (like the `PredictionMarket.sol` at `0x59De...`) that handle liquidity pools, $SSYR staking, and automated payouts.
 
 ---
 
-## Coinbase Developer Platform (CDP)
+## 2. The Social Layer: Bluesky (AT Protocol)
+Unlike traditional markets that require a centralized admin to create a topic, Suthsayer uses **Bluesky** as a decentralized, permissionless "Top of Funnel."
 
-Coinbase CDP powers:
-
-* fiat onramp/offramp flows,
-* wallet onboarding,
-* AI-agent integrations,
-* and future autonomous market tooling.
+* **The AT Protocol Firehose:** Bluesky operates on an open protocol. Suthsayer connects to the "Firehose"—a real-time stream of every post on the network—to listen for the `#Suthsayer` hashtag.
+* **Decentralized Identity (DID):** Every user on Bluesky has a unique DID. Suthsayer maps these social identities to wallet addresses, allowing for a "reputation score" based on the accuracy of a user's past prophecies.
+* **Social Market Discovery:** Instead of users navigating to a stale dashboard, the "market" is born inside a conversation. The social post itself serves as the metadata for the prediction market.
 
 ---
 
-## Coinbase AgentKit
+## 3. The Automation & Oracle Layer: Chainlink
+Chainlink acts as the "connective tissue" and the "judge" of the Suthsayer ecosystem. It removes the need for a central team to manually resolve bets.
 
-The Suthsayer AI agent uses AgentKit-style architecture to:
-
-* read prediction market state,
-* verify prediction posts,
-* summarize active markets,
-* prepare disputes,
-* assist with market resolution workflows,
-* and eventually support autonomous user interactions.
+* **Chainlink Automation (The Listener):** Custom automation logic monitors the indexed posts from the Bluesky firehose. When a valid prediction is detected, Chainlink Automation triggers the `createMarket` function on the Sonic smart contract.
+* **Trustless Resolution (The Judge):** Once a prediction’s end-date is reached, Chainlink Automation is tasked with verifying the outcome. It fetches data from verified APIs or off-chain sources to determine if the prophecy came true.
+* **Automated Settlement (The Executor):** Upon verification, the automation bot calls the settlement function on the contract. This trustlessly distributes the USDC/SSYR pools to the winners, ensuring that "Code is Law" and no human intervention can stall a payout.
 
 ---
 
-## AWS + x402
+### The Suthsayer Technical Flow
 
-A lightweight x402 integration is included for hackathon/demo purposes.
 
-This allows Suthsayer to expose:
-
-* premium AI-generated market intelligence,
-* monetized market reports,
-* and future agent-to-agent commerce APIs.
-
-The x402 integration is intentionally minimal for the MVP.
-
----
-
-# Smart Contracts
-
-Main contract:
-
-```text
-src/PredictionMarket.sol
-```
-
-This contract:
-
-* stores prediction markets,
-* accepts CRE workflow reports,
-* manages market status,
-* handles disputes,
-* and emits settlement events.
-
-The contract is intentionally simple for the MVP/hackathon demo.
-
----
-
-# CRE Workflows
-
-The project uses multiple Chainlink CRE workflows:
-
-## Market Creation Workflow
-
-Creates new markets.
-
-## Market Resolution Workflow
-
-Reads market state and resolves expired markets.
-
-## Market Dispute Workflow
-
-Re-checks disputed markets during the dispute window.
-
----
-
-# Source Folder Overview
-
-All core application logic exists in the `src/` directory.
-
----
-
-# `src/agent/`
-
-Contains the Suthsayer AI agent layer.
-
-## `suthsayerAgent.ts`
-
-Main AI-agent routing logic.
-
-Handles:
-
-* market summaries,
-* feed queries,
-* prediction verification,
-* settlement/dispute preparation.
-
-## `suthsayerTools.ts`
-
-Core market utilities and contract interaction helpers.
-
-Reads:
-
-* Bluesky feed data,
-* prediction market state,
-* and CRE-compatible market information.
-
----
-
-# `src/coinbase/`
-
-Contains Coinbase CDP integrations.
-
-## `onramp.ts`
-
-Generates Coinbase Onramp session URLs.
-
-Used for:
-
-* fiat → crypto onboarding,
-* wallet funding,
-* future frontend wallet integrations.
-
----
-
-# `src/x402/`
-
-Contains the AWS/Coinbase x402 payment integration.
-
-## `payment.ts`
-
-Protects premium API routes using x402 payment middleware.
-
-Used for:
-
-* premium AI market reports,
-* monetized APIs,
-* and future agent commerce.
-
----
-
-# `src/routes/`
-
-Contains Express API routes.
-
-## `premium.ts`
-
-Provides:
-
-* premium market reports,
-* Bluesky feed summaries,
-* and CRE market intelligence.
-
-Protected via x402 middleware.
-
----
-
-# `src/config/`
-
-Contains contract and network configuration.
-
-## `contracts.ts`
-
-Defines:
-
-* contract addresses,
-* ABIs,
-* RPC endpoints,
-* and Bluesky feed API configuration.
-
----
-
-# `src/server.ts`
-
-Main backend server entrypoint.
-
-Initializes:
-
-* AgentKit integrations,
-* Coinbase CDP routes,
-* x402 middleware,
-* and Suthsayer APIs.
-
----
-
-# `src/local.ts`
-
-Local development runner.
-
-Used for:
-
-* local testing,
-* hackathon demos,
-* and development environments.
-
----
-
-# `src/lambda.ts`
-
-AWS Lambda-compatible entrypoint.
-
-Used for:
-
-* serverless deployment,
-* AWS integration,
-* and future cloud scaling.
-
----
-
-# Running the Project
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Copy environment variables:
-
-```bash
-cp .env.example .env
-```
-
-Run locally:
-
-```bash
-npm run dev
-```
-
----
-
-# Example Endpoints
-
-## Health Check
-
-```text
-GET /health
-```
-
-## Agent Query
-
-```text
-POST /api/agent/query
-```
-
-Example body:
-
-```json
-{
-  "input": "summarize markets"
-}
-```
-
-## Coinbase Onramp
-
-```text
-POST /api/onramp-url
-```
-
-## Premium x402 Report
-
-```text
-GET /api/premium/market-report
-```
-
----
-
-# MVP Scope
-
-The current hackathon MVP focuses on:
-
-* social prediction discovery,
-* CRE-based market automation,
-* AI-assisted tooling,
-* and modular integrations.
-
-Some integrations are intentionally lightweight for demo purposes and designed to expand after the hackathon.
-
----
-
-# Future Roadmap
-
-Potential future upgrades include:
-
-* autonomous AI market creation,
-* real Bluesky identity linking,
-* full frontend trading,
-* crosschain deployment,
-* x402 agent commerce,
-* and advanced CRE AI workflows.
-
----
-
-# Suthsayer Vision
-
-Suthsayer aims to become a decentralized social prediction network where:
-
-* social consensus,
-* AI tooling,
-* and decentralized automation
-
+1.  **Ingestion:** User posts on Bluesky → Suthsayer Rep (Backend) detects `#Suthsayer`.
+2.  **Initialization:** Chainlink Automation triggers the Market Creation on **Sonic**.
+3.  **Participation:** Users interact with the **Polymarket-style UI** to trade "Yes" or "No" shares using Sonic's fast finality.
+4.  **Finalization:** **Chainlink** verifies the real-world outcome and settles the contract.
 combine to create transparent and trust-minimized forecasting markets.
 
