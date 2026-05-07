@@ -2,13 +2,7 @@
 
 Sonic Testnet Contract Address: 0x59De9918eE0cba2a60368104C289bE9EB8973E34
 
-Suthsayer is a social-native prediction market platform that combines:
-
-* Bluesky / AT Protocol social prediction discovery
-* Chainlink CRE automation workflows
-* Onchain prediction market settlement
-* Coinbase CDP + AgentKit integrations
-* Optional x402-powered premium AI market intelligence
+Suthsayer is a social-native prediction market platform.
 
 The goal of Suthsayer is to transform social predictions into verifiable, decentralized prediction markets with automated settlement and AI-enhanced tooling.
 
