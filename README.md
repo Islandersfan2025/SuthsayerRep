@@ -1,5 +1,7 @@
 # Suthsayer - Demo here: https://islandersfan2025.github.io/SuthsayerRep/
 
+Sonic Testnet Contract Address: 0x59De9918eE0cba2a60368104C289bE9EB8973E34
+
 Suthsayer is a social-native prediction market platform that combines:
 
 * Bluesky / AT Protocol social prediction discovery
