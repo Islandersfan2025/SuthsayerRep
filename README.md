@@ -1,4 +1,4 @@
-# Suthsayer
+# Suthsayer - Demo here: https://islandersfan2025.github.io/SuthsayerRep/
 
 Suthsayer is a social-native prediction market platform that combines:
 
