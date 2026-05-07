@@ -1,4 +1,4 @@
-# Suthsayer - Demo here: https://islandersfan2025.github.io/SuthsayerRep/
+# Suthsayer - https://islandersfan2025.github.io/SuthsayerRep/
 
 Sonic Testnet Contract Address: 0x59De9918eE0cba2a60368104C289bE9EB8973E34
 
