@@ -10,7 +10,7 @@ The goal of Suthsayer is to transform social predictions into verifiable, decent
 
 # Core Concept
 
-Users post predictions on Bluesky using:
+Users post predictions on AT Protocol using:
 
 ```text
 #Suthsayer
@@ -33,7 +33,7 @@ These predictions can then:
 # Architecture Overview
 
 ```text
-Bluesky / AT Protocol
+ AT Protocol
         ↓
 Suthsayer Feed Viewer
         ↓
@@ -55,17 +55,17 @@ The tech stack of **Suthsayer** is built as a three-pillar architecture designed
 ## 1. The Execution Layer: Sonic Network
 Suthsayer is deployed on the **Sonic Network** (formerly Fantom) to provide the "DeFi" part of Social DeFi. Since social media moves in real-time, the underlying blockchain must match that speed.
 
-* **Sub-Second Finality:** Sonic’s L1 technology allows for near-instant transaction confirmations. This is critical for Suthsayer because market odds shift the moment a high-profile user posts on Bluesky. 
+* **Sub-Second Finality:** Sonic’s L1 technology allows for near-instant transaction confirmations. This is critical for Suthsayer because market odds shift the moment a high-profile user posts. 
 * **Cost Efficiency:** To encourage "micro-prophecies" (small bets on niche social topics), gas fees must be negligible. Sonic provides the low-fee environment necessary for high-frequency social trading.
 * **EVM Compatibility:** By utilizing the Sonic EVM, Suthsayer deploys complex smart contracts (like the `PredictionMarket.sol` at `0x59De...`) that handle liquidity pools, $SSYR staking, and automated payouts.
 
 ---
 
-## 2. The Social Layer: Bluesky (AT Protocol)
-Unlike traditional markets that require a centralized admin to create a topic, Suthsayer uses **Bluesky** as a decentralized, permissionless "Top of Funnel."
+## 2. The Social Layer: AT Protocol
+Unlike traditional markets that require a centralized admin to create a topic, Suthsayer uses **AT Protocol** as a decentralized, permissionless "Top of Funnel."
 
-* **The AT Protocol Firehose:** Bluesky operates on an open protocol. Suthsayer connects to the "Firehose"—a real-time stream of every post on the network—to listen for the `#Suthsayer` hashtag.
-* **Decentralized Identity (DID):** Every user on Bluesky has a unique DID. Suthsayer maps these social identities to wallet addresses, allowing for a "reputation score" based on the accuracy of a user's past prophecies.
+* **The AT Protocol Firehose:** ATP operates on an open protocol. Suthsayer connects to the "Firehose"—a real-time stream of every post on the network—to listen for the `#Suthsayer` hashtag.
+* **Decentralized Identity (DID):** Every user on AT Protocol site has a unique DID. Suthsayer maps these social identities to wallet addresses, allowing for a "reputation score" based on the accuracy of a user's past prophecies.
 * **Social Market Discovery:** Instead of users navigating to a stale dashboard, the "market" is born inside a conversation. The social post itself serves as the metadata for the prediction market.
 
 ---
@@ -82,7 +82,7 @@ Chainlink acts as the "connective tissue" and the "judge" of the Suthsayer ecosy
 ### The Suthsayer Technical Flow
 
 
-1.  **Ingestion:** User posts on Bluesky → Suthsayer Rep (Backend) detects `#Suthsayer`.
+1.  **Ingestion:** User posts on AT Protocol → Suthsayer Rep (Backend) detects `#Suthsayer`.
 2.  **Initialization:** Chainlink Automation triggers the Market Creation on **Sonic**.
 3.  **Participation:** Users interact with the **Polymarket-style UI** to trade "Yes" or "No" shares using Sonic's fast finality.
 4.  **Finalization:** **Chainlink** verifies the real-world outcome and settles the contract.
