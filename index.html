@@ -179,8 +179,76 @@
         <div class="container">
             <h2 class="text-center mb-5">Active Prophecies</h2>
             <div id="suthsayer-feed" class="row justify-content-center">
+                <!-- Sample Prediction 1 -->
                 <div class="col-lg-10">
-                    <p class="text-center text-muted">Loading #Suthsayer prophecies...</p>
+                    <div class="prophecy-box">
+                      <div class="bsky-header">
+                        <div class="d-flex justify-content-between">
+                          <a href="#" class="bsky-handle">@oracle.bsky.social</a>
+                          <span class="text-muted small">Genesis Prediction</span>
+                        </div>
+                        <p class="bsky-text">"Will BTC exceed $100k by the end of 2026? #Suthsayer"</p>
+                      </div>
+                      <div class="market-stats">
+                        <div><span class="stat-label">Source</span><span class="stat-value">Bluesky</span></div>
+                        <div><span class="stat-label">Status</span><span class="stat-value">Active</span></div>
+                        <div><span class="stat-label">Market</span><span class="stat-value">0x59De...</span></div>
+                        <div><span class="stat-label">Tag</span><span class="stat-value text-danger">#Suthsayer</span></div>
+                      </div>
+                      <div class="trade-buttons">
+                        <button class="btn-market btn-yes" onclick="bet(0, 0)">YES</button>
+                        <button class="btn-market btn-no" onclick="bet(0, 1)">NO</button>
+                        <button class="btn-market btn-stake">STAKE $SSYR</button>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Sample Prediction 2 -->
+                <div class="col-lg-10">
+                    <div class="prophecy-box">
+                      <div class="bsky-header">
+                        <div class="d-flex justify-content-between">
+                          <a href="#" class="bsky-handle">@worldcup_seer.bsky.social</a>
+                          <span class="text-muted small">Sports Oracle</span>
+                        </div>
+                        <p class="bsky-text">"Prediction: The host nation will win the opening match of the 2026 World Cup. #Suthsayer"</p>
+                      </div>
+                      <div class="market-stats">
+                        <div><span class="stat-label">Source</span><span class="stat-value">Bluesky</span></div>
+                        <div><span class="stat-label">Status</span><span class="stat-value">Active</span></div>
+                        <div><span class="stat-label">Market</span><span class="stat-value">0x59De...</span></div>
+                        <div><span class="stat-label">Tag</span><span class="stat-value text-danger">#Suthsayer</span></div>
+                      </div>
+                      <div class="trade-buttons">
+                        <button class="btn-market btn-yes" onclick="bet(1, 0)">YES</button>
+                        <button class="btn-market btn-no" onclick="bet(1, 1)">NO</button>
+                        <button class="btn-market btn-stake">STAKE $SSYR</button>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Sample Prediction 3 -->
+                <div class="col-lg-10">
+                    <div class="prophecy-box">
+                      <div class="bsky-header">
+                        <div class="d-flex justify-content-between">
+                          <a href="#" class="bsky-handle">@technomancer.bsky.social</a>
+                          <span class="text-muted small">Tech Oracle</span>
+                        </div>
+                        <p class="bsky-text">"The Sonic Network will hit 1 million transactions in its first hour of Mainnet launch. #Suthsayer"</p>
+                      </div>
+                      <div class="market-stats">
+                        <div><span class="stat-label">Source</span><span class="stat-value">Bluesky</span></div>
+                        <div><span class="stat-label">Status</span><span class="stat-value">Active</span></div>
+                        <div><span class="stat-label">Market</span><span class="stat-value">0x59De...</span></div>
+                        <div><span class="stat-label">Tag</span><span class="stat-value text-danger">#Suthsayer</span></div>
+                      </div>
+                      <div class="trade-buttons">
+                        <button class="btn-market btn-yes" onclick="bet(2, 0)">YES</button>
+                        <button class="btn-market btn-no" onclick="bet(2, 1)">NO</button>
+                        <button class="btn-market btn-stake">STAKE $SSYR</button>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -289,56 +357,52 @@
             } catch (err) { console.error(err); }
         }
 
-        // UPDATED FEED REPOSITORY CONNECTION
         const FEED_API = "http://localhost:8787/api/suthsayer-feed";
 
         async function loadSuthsayerFeed() {
             const feed = document.getElementById("suthsayer-feed");
             try {
-                // Fetching from your SuthsayerRep local/deployed worker
                 const res = await fetch(FEED_API);
                 const data = await res.json();
 
-                if (!data.posts || data.posts.length === 0) {
-                    feed.innerHTML = `<div class="col-lg-10"><p class="text-center text-muted">No #Suthsayer predictions found yet.</p></div>`;
-                    return;
-                }
-
-                feed.innerHTML = data.posts.map((post) => {
-                    const created = post.createdAt ? new Date(post.createdAt).toLocaleString() : "Recently";
-                    return `
-                        <div class="col-lg-10">
-                          <div class="prophecy-box">
-                            <div class="bsky-header">
-                              <div class="d-flex justify-content-between">
-                                <a href="https://bsky.app" target="_blank" class="bsky-handle">${shortDid(post.authorDid)}</a>
-                                <span class="text-muted small">${created}</span>
+                if (data.posts && data.posts.length > 0) {
+                    // This will clear the static samples if the API returns live data
+                    feed.innerHTML = data.posts.map((post) => {
+                        const created = post.createdAt ? new Date(post.createdAt).toLocaleString() : "Recently";
+                        return `
+                            <div class="col-lg-10">
+                              <div class="prophecy-box">
+                                <div class="bsky-header">
+                                  <div class="d-flex justify-content-between">
+                                    <a href="https://bsky.app" target="_blank" class="bsky-handle">${shortDid(post.authorDid)}</a>
+                                    <span class="text-muted small">${created}</span>
+                                  </div>
+                                  <p class="bsky-text">"${escapeHtml(post.text)}"</p>
+                                </div>
+                                <div class="market-stats">
+                                  <div><span class="stat-label">Source</span><span class="stat-value">Bluesky</span></div>
+                                  <div><span class="stat-label">Status</span><span class="stat-value">Verified</span></div>
+                                  <div><span class="stat-label">Market</span><span class="stat-value">${PREDICTION_MARKET_ADDR.slice(0,6)}</span></div>
+                                  <div><span class="stat-label">Tag</span><span class="stat-value text-danger">#Suthsayer</span></div>
+                                </div>
+                                <div class="trade-buttons">
+                                  <button class="btn-market btn-yes" onclick="bet(0, 0)">YES</button>
+                                  <button class="btn-market btn-no" onclick="bet(0, 1)">NO</button>
+                                  <button class="btn-market btn-stake">STAKE $SSYR</button>
+                                </div>
                               </div>
-                              <p class="bsky-text">"${escapeHtml(post.text)}"</p>
-                            </div>
-                            <div class="market-stats">
-                              <div><span class="stat-label">Source</span><span class="stat-value">Bluesky</span></div>
-                              <div><span class="stat-label">Status</span><span class="stat-value">Verified</span></div>
-                              <div><span class="stat-label">Market</span><span class="stat-value">${PREDICTION_MARKET_ADDR.slice(0,6)}</span></div>
-                              <div><span class="stat-label">Tag</span><span class="stat-value text-danger">#Suthsayer</span></div>
-                            </div>
-                            <div class="trade-buttons">
-                              <button class="btn-market btn-yes" onclick="bet(0, 0)">YES</button>
-                              <button class="btn-market btn-no" onclick="bet(0, 1)">NO</button>
-                              <button class="btn-market btn-stake" onclick="stakeSuth()">STAKE $SSYR</button>
-                            </div>
-                          </div>
-                        </div>`;
-                }).join("");
+                            </div>`;
+                    }).join("");
+                }
             } catch (err) {
-                feed.innerHTML = `<div class="col-lg-10"><p class="text-center text-danger">Check SuthsayerRep Worker Connection.</p></div>`;
+                console.log("Using static sample prophecies for PoC.");
             }
         }
 
         function shortDid(did) { return did ? did.slice(0, 12) + "..." + did.slice(-6) : "Unknown Seer"; }
         function escapeHtml(v) { return String(v).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;"); }
 
-        loadSuthsayerFeed();
+        // We check for live data but maintain the static ones for POC demo
         setInterval(loadSuthsayerFeed, 10000);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
