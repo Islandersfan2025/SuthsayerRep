@@ -834,8 +834,54 @@
 
     <script>
 
-        const LOGO_SVG =
-            `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZyI+CjxwYXRoIGQ9Ik0yNTAgMTAwQzE1MCAxMDAgNjAgMTkwIDYwIDI1MEM2MCAzMTAgMTUwIDQwMCAyNTAgNDAwQzM1MCA0MDAgNDQwIDMxMCA0NDAgMjUwQzQ0MCAxOTAgMzUwIDEwMCAyNTAgMTAwWiIgc3Ryb2tlPSIjODgwMDAwIiBzdHJva2Utd2lkdGg9IjE1Ii8+CjxwYXRoIGQ9Ik0yNTAgMTUwQzE5MCAxNTAgMTQwIDE5MCAxNDAgMjUwQzE0MCAzMTAgMTkwIDM1MCAyNTAgMzUwQzMxMCAzMTAgMzYwIDMxMCAzNjAgMjUwQzM2MCAxOTAgMzEwIDE1MCAyNTAgMTUwWiIgc3Ryb2tlPSIjYzVhMDU5IiBzdHJva2Utd2lkdGg9IjEwIi8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjI1MCIgcj0iNDAiIGZpbGw9IiMwMGYyZmYiLz4KPHBhdGggZD0iTTI1MCAxOTBMMjUwIDIxME0yNTAgMjlMMjUwIDMxME0zMTAgMjUwTDI5MDI1ME0xOTAgMjUwbDIwIDAiIHN0cm9rZT0iIzhkMDAwMCIgc3Ryb2tlLXdpZHRoPSI4Ii8+Cjwvc3ZnPg==`;
+        const LOGO_SVG = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+        <svg
+            width="500"
+            height="500"
+            viewBox="0 0 500 500"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M250 100
+                   C150 100 60 190 60 250
+                   C60 310 150 400 250 400
+                   C350 400 440 310 440 250
+                   C440 190 350 100 250 100Z"
+                stroke="#880000"
+                stroke-width="15"
+            />
+
+            <path
+                d="M250 150
+                   C190 150 140 190 140 250
+                   C140 310 190 350 250 350
+                   C310 350 360 310 360 250
+                   C360 190 310 150 250 150Z"
+                stroke="#c5a059"
+                stroke-width="10"
+            />
+
+            <circle
+                cx="250"
+                cy="250"
+                r="40"
+                fill="#00f2ff"
+            />
+
+            <path
+                d="
+                    M250 190 L250 210
+                    M250 290 L250 310
+                    M310 250 L290 250
+                    M190 250 L210 250
+                "
+                stroke="#8d0000"
+                stroke-width="8"
+                stroke-linecap="round"
+            />
+        </svg>
+    `)}`;
 
     </script>
 
